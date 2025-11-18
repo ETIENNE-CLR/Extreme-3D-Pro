@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Diagnostics.Contracts;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 
 namespace P_Manette
 {
@@ -8,6 +10,8 @@ namespace P_Manette
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private Controller contoller;
+        private SpriteFont font;
 
         public Game1()
         {
@@ -18,24 +22,26 @@ namespace P_Manette
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
+
+            contoller = new Controller();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            font = Content.Load<SpriteFont>("galleryFont");
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
                 Exit();
+            }
 
-            // TODO: Add your update logic here
+            contoller.Update();
 
             base.Update(gameTime);
         }
@@ -44,7 +50,14 @@ namespace P_Manette
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+            _spriteBatch.DrawString(font, "Manette connectee : " + GamePad.GetState(PlayerIndex.One).IsConnected, new Vector2(10, 10), Color.White);
+
+            if (contoller.buttonPressed)
+            {
+                _spriteBatch.DrawString(font, "Bonjour !", new Vector2(100, 100), Color.White);
+            }
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -1,0 +1,66 @@
+% Packages nécessaires
+\usepackage{listingsutf8}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{accsupp} % pour l’accessibilité, optionnel
+
+% Couleurs personnalisées
+\definecolor{codebg}{rgb}{0.95,0.95,0.96}      % fond du code
+\definecolor{codeframe}{rgb}{0.8,0.8,0.8}      % bordure
+\definecolor{codekeyword}{RGB}{0,0,180}        % mots-clés
+\definecolor{codestring}{RGB}{163,21,21}       % chaînes
+\definecolor{codecomment}{RGB}{0,128,0}        % commentaires
+\definecolor{cstype}{RGB}{43,145,175}          % types C#
+
+% Définition du langage C#
+\lstdefinelanguage{CSharp}{
+    morekeywords={abstract,event,new,struct,as,explicit,null,switch,
+    base,extern,object,this,bool,false,operator,throw,
+    break,finally,out,true,byte,fixed,override,try,
+    case,float,params,typeof,catch,for,private,uint,
+    char,foreach,protected,ulong,checked,goto,public,unchecked,
+    class,if,readonly,unsafe,const,implicit,ref,ushort,
+    continue,in,return,using,decimal,int,sbyte,virtual,
+    default,interface,sealed,volatile,delegate,internal,short,void,
+    do,is,sizeof,while,double,lock,stackalloc,
+    else,long,static,enum,namespace,string},
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]'
+}
+
+% Style global pour les listings C#
+\lstset{
+    language=CSharp,
+    inputencoding=utf8,
+    extendedchars=true,
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{codekeyword}\bfseries,
+    commentstyle=\color{codecomment}\itshape,
+    stringstyle=\color{codestring},
+    identifierstyle=\color{black},
+    emphstyle=\color{cstype}\bfseries,
+    breaklines=true,
+    breakatwhitespace=true,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    rulecolor=\color{codeframe},
+    tabsize=4,
+    captionpos=b,
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+    showstringspaces=false
+}
+
+% Commande pour inclure un fichier C# avec titre
+\newcommand{\csharpcodelisting}[2]{
+\lstinputlisting[
+    language=CSharp,
+    caption={#2},
+    title={#1}
+]{#1}
+}

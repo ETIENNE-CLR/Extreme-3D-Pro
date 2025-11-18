@@ -4,6 +4,8 @@
 \def\mysubtitle{Code source}
 \def\myLesson{Atelier Programmation}
 \input{../includes/config.tex}
+\input{../includes/inc_forest.tex}
+\input{../includes/inc_listings_csharp.tex}
 
 % Début du document
 \begin{document}
@@ -14,6 +16,33 @@
 \clearpage
 
 % Corps du document
-\section{Titre}
+\section{Arborescence}
+\begin{minipage}[t]{0.95\textwidth}
+	{\SetIcons{true}
+		\begin{forest} base layout, compact
+				[\froot{\textbf{P\_Manette}}, folder
+						[\fdir{.config}, folder
+								[\fcode{dotnet-tools.json}, file]
+						]
+						[\fdir{Content}, folder
+								[\ffile{Content.mgcb}, file]
+								[\ffile{galleryFont.spritefont}, file]
+						]
+						[\ffile{app.manifest}, file]
+						[\fcode{Controller.cs}, file]
+						[\fcode{Game1.cs}, file]
+						[\ffile{Icon.ico}, file]
+						[\ffile{P\_Manette.csproj}, file]
+						[\ffile{P\_Manette.sln}, file]
+						[\fcode{Program.cs}, file]
+				]
+		\end{forest}
+	}
+\end{minipage}
+\clearpage
+
+\section{Fichiers}
+\lstinputlisting[language=CSharp, caption={Fichier principal Game1 qui lance toute l'application}]{../../P_Manette/Game1.cs}
+\lstinputlisting[language=CSharp, caption={Fichier qui gère la manette}]{../../P_Manette/Controller.cs}
 
 \end{document}

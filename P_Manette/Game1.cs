@@ -51,7 +51,6 @@ namespace P_Manette
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(font, "Manette connectee : " + GamePad.GetState(PlayerIndex.One).IsConnected, new Vector2(10, 10), Color.White);
 
             if (contoller.buttonPressed)
             {

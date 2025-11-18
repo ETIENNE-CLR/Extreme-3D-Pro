@@ -1,35 +1,46 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+﻿using System;
+using Microsoft.Xna.Framework;
+using SharpDX.Direct3D11;
 using SharpDX.DirectInput;
 
 namespace P_Manette
 {
     public class Controller
     {
-        private GamePadState currentState;
-        private GamePadState previousState;
+        private Joystick joystick;
+        private DirectInput directInput;
 
         public bool buttonPressed;
+        private bool connectedController;
 
         public Controller()
         {
-
+            directInput = new DirectInput();
+            DetectedController();
         }
 
         public void Update()
         {
-            previousState = currentState;
+            
+        }
 
-            currentState = GamePad.GetState(PlayerIndex.One);
-            if (!currentState.IsConnected)
-            {
-                return;
-            }
+        private bool DetectedController()
+        {
+            var joystickGuid = Guid.Empty;
 
-            if (currentState.IsButtonDown(Buttons.A))
+            foreach(var device in directInput.GetDevices(DeviceType.Joystick, DeviceEnumerationFlags.AttachedOnly))
             {
-                buttonPressed = true;
+                if (device.InstanceName.Contains("Extreme 3D"))
+                {
+                    joystickGuid = device.InstanceGuid;
+                    break;
+                }
             }
+        }
+
+        public bool PressedButton()
+        {
+
         }
     }
 }

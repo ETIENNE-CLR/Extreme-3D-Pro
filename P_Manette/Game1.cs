@@ -51,11 +51,7 @@ namespace P_Manette
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-
-            if (contoller.buttonPressed)
-            {
-                _spriteBatch.DrawString(font, "Bonjour !", new Vector2(100, 100), Color.White);
-            }
+            _spriteBatch.DrawString(font, (contoller.connectedController != null) ? "Bonjour !" : "Manette non detectee", new Vector2(100, 100), Color.White);
             _spriteBatch.End();
 
             base.Draw(gameTime);

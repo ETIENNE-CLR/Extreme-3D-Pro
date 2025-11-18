@@ -14,6 +14,84 @@
 \clearpage
 
 % Corps du document
-\section{Titre}
+\section{Identité du périphérique}
+\begin{itemize}
+	\item \textbf{Marque :} Logitech
+	\item \textbf{Modèle :} EXTREME 3D PRO
+	\item \textbf{Type :} Joystick
+	\item \textbf{Identifiants système :}
+	      \begin{itemize}
+		      \item USB : VID = jsp ; PID = jsp
+		      \item Nom exposé au système : Extreme 3D pro
+	      \end{itemize}
+	\item \textbf{Firmware / version :} Je sais pas
+	\item \textbf{Date du test :} \today
+	\item \textbf{Testeur :} \myauthor
+\end{itemize}
+
+\section{Contrôles joystick}
+\textbf{Axes analogiques}\newLine
+
+\begin{tabular}{rcccl}
+	\toprule
+	Axe & ID / Nom & Plage brute & Deadzone & Remarques \\
+	\midrule
+	X1  & -        & -           & -        & -         \\
+	Y1  & -        & -           & -        & -         \\
+	Z1  & -        & -           & -        & -         \\
+	X2  & -        & -           & -        & -         \\
+	Y2  & -        & -           & -        & -         \\
+	Z2  & -        & -           & -        & -         \\
+	\bottomrule
+\end{tabular} \newLine
+
+\textbf{Boutons}\newLine
+
+\begin{tabular}{rcl}
+	\toprule
+	N° & Étiquette physique & Remarques                              \\
+	\midrule
+	1  & Aucune étiquette   & Gachette                               \\
+	2  & Bouton 2           & Bouton du pouce                        \\
+	3  & Bouton 3           & Bouton bas-gauche du haut du joystick  \\
+	4  & Bouton 4           & Bouton bas-droit du haut du joystick   \\
+	5  & Bouton 5           & Bouton haut-gauche du haut du joystick \\
+	6  & Bouton 6           & Bouton haut-droit du haut du joystick  \\
+	7  & Bouton 7           & Bouton sur la base haut-gauche         \\
+	8  & Bouton 8           & Bouton sur la base haut-droit          \\
+	9  & Bouton 9           & Bouton sur la base milieu-gauche       \\
+	10 & Bouton 10          & Bouton sur la base milieu-droit        \\
+	11 & Bouton 11          & Bouton sur la base bas-gauche          \\
+	12 & Bouton 12          & Bouton sur la base bas-droit           \\
+	\bottomrule
+\end{tabular}
+
+
+\section{Comportement temporel et stabilité}
+\textbf{Latence}
+\begin{itemize}
+	\item Latence moyenne observée (joystick) : x ms
+	\item Méthode de mesure (logiciel, protocole) : ta grand mère
+\end{itemize} \newLine
+
+\textbf{Jitter}
+\begin{itemize}
+	\item Variabilité de la latence (écart typique) : : x ms
+	\item Niveau ressenti : faible
+	\item Effet perçu joystick : bah je sais pas, ça veut dire quoi ?
+\end{itemize} \newLine
+
+\textbf{Stabilité des valeurs}
+\begin{itemize}
+	\item Jitter des axes au repos (bruit, petites variations) : non
+\end{itemize} \newLine
+
+\section{Limitations et particularités observées}
+\textbf{Limitations techniques}
+\begin{itemize}
+	\item Pas de MIDI OUT physique : oui
+	\item Résolution limitée de certains contrôles : je sais pas
+	\item Nombre max. de boutons / axes gérés par le driver : 12 boutons et 2 joysticks
+\end{itemize} \newLine
 
 \end{document}

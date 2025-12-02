@@ -11,7 +11,12 @@ namespace P_Manette
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Controller contoller;
+        private MyJoystick joystick;
+        private Boutton boutton; 
         private SpriteFont font;
+        private Texture2D pixel;
+        private Rectangle rotationZBar;
+        private Rectangle axeXYrectangle;
 
         public Game1()
         {
@@ -25,6 +30,13 @@ namespace P_Manette
             base.Initialize();
 
             contoller = new Controller();
+            joystick = new MyJoystick();
+            boutton = new Boutton();
+            pixel = new Texture2D(GraphicsDevice, 1, 1);
+            pixel.SetData(new[] { Color.White });
+
+            rotationZBar = new Rectangle(30, 30, 300, 20);
+            axeXYrectangle = new Rectangle(100, 100, 200, 200);
         }
 
         protected override void LoadContent()
@@ -41,7 +53,8 @@ namespace P_Manette
                 Exit();
             }
 
-            contoller.Update();
+            joystick.Update();
+            boutton.Update();
 
             base.Update(gameTime);
         }
@@ -51,7 +64,10 @@ namespace P_Manette
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(font, (contoller.connectedController != null) ? "Bonjour !" : "Manette non detectee", new Vector2(100, 100), Color.White);
+            joystick.DrawBar(_spriteBatch, pixel, rotationZBar);
+            joystick.DrawAxes(_spriteBatch, pixel, axeXYrectangle);
+            boutton.DrawPressedButtons(_spriteBatch, pixel, font);
+            _spriteBatch.DrawString(font, (contoller.connectedController != null) ? "Manette detectee" : "Manette non detectee", new Vector2(100, 100), Color.White);
             _spriteBatch.End();
 
             base.Draw(gameTime);

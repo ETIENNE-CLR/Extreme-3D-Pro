@@ -12,11 +12,16 @@ namespace P_Manette
         private SpriteBatch _spriteBatch;
         private Controller contoller;
         private MyJoystick joystick;
+        private Arrows fleches;
         private Boutton boutton; 
+        private Curseur curseur; 
         private SpriteFont font;
         private Texture2D pixel;
         private Rectangle rotationZBar;
-        private Rectangle axeXYrectangle;
+        Rectangle rightStickRect;
+        Rectangle leftStickRect;
+        Rectangle arrowsRect;
+        Rectangle curseurRect;
 
         public Game1()
         {
@@ -31,12 +36,17 @@ namespace P_Manette
 
             contoller = new Controller();
             joystick = new MyJoystick();
+            fleches = new Arrows();
+            curseur = new Curseur();
             boutton = new Boutton();
             pixel = new Texture2D(GraphicsDevice, 1, 1);
             pixel.SetData(new[] { Color.White });
 
             rotationZBar = new Rectangle(30, 30, 300, 20);
-            axeXYrectangle = new Rectangle(100, 100, 200, 200);
+            leftStickRect = new Rectangle(100, 100, 200, 200);
+            rightStickRect = new Rectangle(350, 100, 200, 200);
+            arrowsRect = new Rectangle(600, 100, 100, 100);
+            curseurRect = new Rectangle(50, 50, 20, 200);
         }
 
         protected override void LoadContent()
@@ -55,6 +65,8 @@ namespace P_Manette
 
             joystick.Update();
             boutton.Update();
+            fleches.Update();
+            curseur.Update();
 
             base.Update(gameTime);
         }
@@ -64,13 +76,28 @@ namespace P_Manette
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            joystick.DrawBar(_spriteBatch, pixel, rotationZBar);
-            joystick.DrawAxes(_spriteBatch, pixel, axeXYrectangle);
+
+            // Dessiner tout le HUD du joystick
+            joystick.DrawJoystickHUD(_spriteBatch, pixel, leftStickRect, rightStickRect, rotationZBar);
+
+            // Afficher les boutons pressés
             boutton.DrawPressedButtons(_spriteBatch, pixel, font);
-            _spriteBatch.DrawString(font, (contoller.connectedController != null) ? "Manette detectee" : "Manette non detectee", new Vector2(100, 100), Color.White);
+
+            fleches.Draw(_spriteBatch, pixel, arrowsRect);
+            curseur.Draw(_spriteBatch, pixel, curseurRect);
+
+            // Afficher l'état de la manette
+            _spriteBatch.DrawString(
+                font,
+                (contoller.connectedController != null) ? "Manette detectee" : "Manette non detectee",
+                new Vector2(100, 50),
+                Color.White
+            );
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
     }
 }
